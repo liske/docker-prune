@@ -4,6 +4,10 @@ services:
   prune:
     image: "liske/docker-prune"
 
+    environment:
+      # prune every 2h
+      SLEEP: 7200
+
     volumes:
       # map docker socket into container
       - /var/run/docker.sock:/var/run/docker.sock
@@ -11,6 +15,3 @@ services:
     deploy:
       # run on every docker node
       mode: global
-      # prune every 2h
-      restart_policy:
-        delay: 2h
